@@ -2,9 +2,12 @@
     background: #fff;
 }
 
-.header .inner {
+.header .hd_wrap {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    max-width: 1410px;
+    margin: 0 auto;
     height: 80px;
 }
 
@@ -12,26 +15,68 @@
     height: 32px;
 }
 
-.header .gnb {
-    margin-left: auto;
+.header .gnb {}
+
+.header .gnb::before {
+    content: "";
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    height: 0;
+    background: #fff;
+    border-top: 1px solid #ddd;
+
+    transition: 0.4s;
+
+}
+
+.header .gnb:hover::before {
+    height: 240px;
+}
+
+.header .gnb>ul {
+    display: flex;
+    gap: 72px;
 }
 
 .header .gnb>ul>li>a {
     display: block;
-    line-height: 80px;
-    color: #000000;
-    font-size: 16px;
-    font-weight: 400;
+    line-height: 120px;
+}
 
+.header .gnb>ul>li {
+    position: relative;
+}
+
+.header .gnb>ul>li>ul {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    z-index: 2;
+
+    transform: translate(-50%, 0);
+
+    height: 0;
+    overflow: hidden;
+
+    transition: 0.4s;
+}
+
+.header .gnb:hover>ul>li>ul {
+    height: 200px;
+}
+
+.header .gnb>ul>li>ul a {
+    display: block;
+    line-height: 40px;
+    padding: 0 24px;
+    text-align: center;
     white-space: nowrap;
 }
 
 
-
-.header .gnb>ul {
-    display: flex;
-    gap: 40px;
-}
 
 .header .utils {
     display: flex;
@@ -413,12 +458,25 @@
 
 .to_top {
     position: fixed;
-    bottom: 200px;
-    right: 120px;
+    bottom: 160px;
+    right: 160px;
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s;
 }
 
 .to_top button {
     width: 40px;
     height: 40px;
-    background: #666;
+    background: #999;
+
+    border-radius: 50%;
+}
+
+.to_top.on {
+    opacity: 1;
+    visibility: visible;
+    right: 160px;
 }
